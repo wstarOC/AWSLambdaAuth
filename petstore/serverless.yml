@@ -1,1 +1,20 @@
-test
+org: wstaroc
+app: petstore
+service: petstore
+
+frameworkVersion: '2'
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  region: eu-west-1
+
+functions:
+  getpets:
+    handler: handlers/getPets.handler
+    events:
+      - http:
+          path: pets
+          method: get
