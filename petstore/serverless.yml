@@ -11,10 +11,10 @@ provider:
   region: eu-west-1
 
 functions:
-  verify-token:
-    handler: auth/verifyToken.auth
-    events:
-      - cloudWatchLog: '/aws/lambda/verifyToken'
+  verifyToken:
+    handler: auth/verify.handler
+#  events:
+#      - cloudWatchLog: '/aws/lambda/verifyToken'
 
   getpets:
     handler: handlers/getPets.handler
@@ -22,4 +22,4 @@ functions:
       - http:
           path: pets
           method: get
-          authorizer: verify-token
+          authorizer: verifyToken

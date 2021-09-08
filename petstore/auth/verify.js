@@ -6,7 +6,7 @@
 // the authorizer returns an HTTP 500 status code. 
 // Note that token values are case-sensitive.
 
-module.exports.auth = (event, context, callback) => {
+module.exports.handler = (event, context, callback) => {
 
     console.log("inside auth");
 
