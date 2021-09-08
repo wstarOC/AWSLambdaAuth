@@ -12,9 +12,13 @@ provider:
   region: eu-west-1
 
 functions:
+  verify-token:
+    handler: auth/VerifyToken.auth
+
   getpets:
     handler: handlers/getPets.handler
     events:
       - http:
           path: pets
           method: get
+          authorizer: verify-token
