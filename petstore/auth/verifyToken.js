@@ -7,12 +7,19 @@
 // Note that token values are case-sensitive.
 
 module.exports.auth = (event, context, callback) => {
+
+    console.log("inside auth");
+
     var token = event.authorizationToken;
+
+    console.log("auth token");
+    console.log(token);
     switch (token) {
         //case 'allow':
         //    callback(null, generatePolicy('user', 'Allow', event.methodArn));
         //    break;
         case 'bb65tgrf':
+            console.log("token case");
             callback(null, generatePolicy('user', 'Allow', event.methodArn));
             break;
         //case 'deny':
@@ -22,9 +29,9 @@ module.exports.auth = (event, context, callback) => {
         //    callback("Unauthorized");   // Return a 401 Unauthorized response
         //    break;
         default:
+            console.log("default case");
             //callback("Error: Invalid token"); // Return a 500 Invalid token response
-            callback("Unauthorized");   // Return a 401 Unauthorized response
-            
+            callback("Unauthorized");   // Return a 401 Unauthorized response 
     }
 };
 

@@ -4,7 +4,6 @@ service: petstore
 
 frameworkVersion: '2'
 
-
 provider:
   name: aws
   runtime: nodejs12.x
@@ -13,7 +12,9 @@ provider:
 
 functions:
   verify-token:
-    handler: auth/VerifyToken.auth
+    handler: auth/verifyToken.auth
+    events:
+      - cloudWatchLog: '/aws/lambda/verifyToken'
 
   getpets:
     handler: handlers/getPets.handler
