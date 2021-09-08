@@ -8,18 +8,12 @@
 
 module.exports.handler = (event, context, callback) => {
 
-    console.log("inside auth");
-
     var token = event.authorizationToken;
-
-    console.log("auth token");
-    console.log(token);
     switch (token) {
         //case 'allow':
         //    callback(null, generatePolicy('user', 'Allow', event.methodArn));
         //    break;
         case 'bb65tgrf':
-            console.log("token case");
             callback(null, generatePolicy('user', 'Allow', event.methodArn));
             break;
         //case 'deny':
@@ -29,7 +23,6 @@ module.exports.handler = (event, context, callback) => {
         //    callback("Unauthorized");   // Return a 401 Unauthorized response
         //    break;
         default:
-            console.log("default case");
             //callback("Error: Invalid token"); // Return a 500 Invalid token response
             callback("Unauthorized");   // Return a 401 Unauthorized response 
     }
@@ -52,11 +45,5 @@ var generatePolicy = function(principalId, effect, resource) {
         authResponse.policyDocument = policyDocument;
     }
     
-    // Optional output with custom properties of the String, Number or Boolean type.
-    //authResponse.context = {
-    //    "stringKey": "stringval",
-    //    "numberKey": 123,
-    //    "booleanKey": true
-    //};
     return authResponse;
 }

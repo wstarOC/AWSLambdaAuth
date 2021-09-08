@@ -13,8 +13,6 @@ provider:
 functions:
   verifyToken:
     handler: auth/verify.handler
-#  events:
-#      - cloudWatchLog: '/aws/lambda/verifyToken'
 
   getpets:
     handler: handlers/getPets.handler
@@ -22,4 +20,6 @@ functions:
       - http:
           path: pets
           method: get
-          authorizer: verifyToken
+          authorizer: 
+            name: verifyToken
+            identitySource: method.request.header.authorizationToken
