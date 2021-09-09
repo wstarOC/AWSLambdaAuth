@@ -8,22 +8,14 @@
 
 module.exports.handler = (event, context, callback) => {
 
-    var token = event.authorizationToken;
-    switch (token) {
-        //case 'allow':
-        //    callback(null, generatePolicy('user', 'Allow', event.methodArn));
-        //    break;
-        case 'bb65tgrf':
+    var requestToken = event.authorizationToken;
+    var secretToken = process.env.AUTHORIZATION_TOKEN
+
+    switch (requestToken) {
+        case secretToken:
             callback(null, generatePolicy('user', 'Allow', event.methodArn));
             break;
-        //case 'deny':
-        //    callback(null, generatePolicy('user', 'Deny', event.methodArn));
-        //    break;
-        //case 'unauthorized':
-        //    callback("Unauthorized");   // Return a 401 Unauthorized response
-        //    break;
         default:
-            //callback("Error: Invalid token"); // Return a 500 Invalid token response
             callback("Unauthorized");   // Return a 401 Unauthorized response 
     }
 };

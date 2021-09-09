@@ -3,6 +3,7 @@ app: petstore
 service: petstore
 
 frameworkVersion: '2'
+variablesResolutionMode: 20210326
 
 provider:
   name: aws
@@ -13,6 +14,8 @@ provider:
 functions:
   verifyToken:
     handler: auth/verify.handler
+    environment: 
+      AUTHORIZATION_TOKEN: ${self:custom.AUTHORIZATION_TOKEN.authorizationToken}
 
   getpets:
     handler: handlers/getPets.handler
@@ -22,4 +25,7 @@ functions:
           method: get
           authorizer: 
             name: verifyToken
-            identitySource: method.request.header.authorizationToken
+            identitySource: method.request.header.authorizationToken #if this is not set then the source by default is set to Authorization
+
+custom: 
+  AUTHORIZATION_TOKEN: ${ssm:/aws/reference/secretsmanager/authorizationToken}
