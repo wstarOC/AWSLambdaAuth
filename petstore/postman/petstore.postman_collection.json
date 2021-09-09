@@ -1,0 +1,41 @@
+{
+	"info": {
+		"_postman_id": "e8dc8028-8ed2-49fc-852a-15482a7bf99a",
+		"name": "petstore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pets",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorizationToken",
+						"value": "bb65tgrf",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://{{appid}}.execute-api.{{region}}.amazonaws.com/{{stage}}/pets",
+					"protocol": "https",
+					"host": [
+						"{{appid}}",
+						"execute-api",
+						"{{region}}",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"{{stage}}",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
