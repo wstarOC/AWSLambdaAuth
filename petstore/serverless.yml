@@ -25,7 +25,7 @@ functions:
           method: get
           authorizer: 
             name: verifyToken
-            identitySource: method.request.header.authorizationToken #if this is not set then the source by default is set to Authorization
+            identitySource: method.request.header.authorizationToken #if this is not set then the source by default is set to method.request.header.Authorization
 
 custom: 
   AUTHORIZATION_TOKEN: ${ssm:/aws/reference/secretsmanager/authorizationToken}
